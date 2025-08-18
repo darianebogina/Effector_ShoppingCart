@@ -1,0 +1,23 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      effector:
+        specifier: ^23.4.2
+        version: 23.4.2
+
+packages:
+
+  effector@23.4.2:
+    resolution: {integrity: sha512-Uae07sVa6yilnO9FhjFvLVkuakpKTHqn4bIoFxEuDsvNKfFtidLHGi1mv3bjaoJUxj3ldqZDAg3kvELVgMWSjw==}
+    engines: {node: '>=11.0.0'}
+
+snapshots:
+
+  effector@23.4.2: {}
