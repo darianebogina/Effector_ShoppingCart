@@ -29,6 +29,7 @@ export const productAdded = createEvent<Product>();
 export const productDeleted = createEvent<Product>();
 const arrayProductAdded = createEvent<Array<Product>>();
 const arrayProductDeleted = createEvent<Array<Product>>();
+const clearCart = createEvent<void>();
 export const sendCart = createEvent<void>();
 export const getCart = createEvent<void>();
 export const $productCart = createStore<Array<Product>>([]);
@@ -38,6 +39,7 @@ $productCart
         [...cart, productToAdd])
     .on(productDeleted, (cart: Array<Product>, productToDelete: Product) =>
         cart.filter(item => item.id !== productToDelete.id))
+    .on(clearCart, () => [])
     .on(arrayProductAdded, (cart: Array<Product>, productsToAdd: Array<Product>) =>
         [...cart, ...productsToAdd])
     .on(arrayProductDeleted, (cart: Array<Product>, productsToDelete: Array<Product>) => {
@@ -75,12 +77,18 @@ sample({
 
 sample({
     clock: getCartFromServerFx.doneData,
+    target: clearCart,
+});
+
+sample({
+    clock: getCartFromServerFx.doneData,
     target: arrayProductAdded,
 });
 
-
+// arrayProductAdded(productsArray);
 // getCart();
 // setTimeout(() => {
+       // clearCart();
 //     arrayProductAdded(productsArray);
 //     productAdded(product1);
 //     sendCart();
