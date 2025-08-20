@@ -70,6 +70,7 @@ sample({
     target: sendToServerFx,
 });
 
+
 sample({
     clock: getCart,
     target: getCartFromServerFx,
@@ -80,18 +81,51 @@ sample({
     target: clearCart,
 });
 
+
 sample({
     clock: getCartFromServerFx.doneData,
     target: arrayProductAdded,
 });
 
-// arrayProductAdded(productsArray);
-// getCart();
+sample({
+    clock: clearCart,
+    fn: () => productsArray,
+    target: arrayProductAdded,
+});
+
+sample ({
+    clock: arrayProductAdded,
+    fn: () => product1,
+    target: productAdded,
+});
+
+sample ({
+    clock: productAdded,
+    fn: () => product1,
+    target: productDeleted,
+});
+
+sample ({
+    clock: [arrayProductAdded, productAdded],
+    target: sendCart,
+});
+
+getCart();
+
+
+//посмотреть через массивы
+// sample ({
+//     clock: getCartFromServerFx.doneData,
+//     target: [clearCart, sendCart],
+// })
+
+//Типа дерево с корнем в getCart что за чем идет, через сэмплы!!!!!
+
 // setTimeout(() => {
-       // clearCart();
+//        clearCart();
 //     arrayProductAdded(productsArray);
 //     productAdded(product1);
-//     sendCart();
+//     sendCart(); //эти несколько раз через сэмплы
 //     arrayProductDeleted(productsArray);
 //     productDeleted(product1);
 //     sendCart();
@@ -102,4 +136,4 @@ sample({
 //     });
 //     sendCart();
 // }, 3000);
-
+//
